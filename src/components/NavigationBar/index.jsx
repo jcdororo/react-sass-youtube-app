@@ -1,8 +1,15 @@
-import React from 'react'
+import React from 'react';
+import LeftNav from './LeftNav';
+import SearchBar from './SearchBar';
+import RightNav from './RightNav'
 
 const NavigationBar = () => {
   return (
-    <div>NavigationBar</div>
+    <nav className='Navbar'>
+      <LeftNav />
+      <SearchBar />
+      <RightNav />
+    </nav>
   )
 }
 
