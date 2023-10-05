@@ -10,9 +10,9 @@ const LeftNav = () => {
         <IoMenu size={25} />
       </button>
 
-      <div>
-        <Link>
-          <img src={imgUrl} alt='youtube logo' />
+      <div className='logo-container'>
+        <Link to='/'>
+          <img src={imgUrl} alt="youtube logo" data-tip='YouTube Home' data-for='sidebar' />
         </Link>
       </div>
     </div>
