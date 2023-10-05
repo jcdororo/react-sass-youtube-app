@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import LeftNav from './LeftNav';
 import SearchBar from './SearchBar';
 import RightNav from './RightNav'
 import {BiArrowBack} from 'react-icons/bi'
 import { ImSearch } from 'react-icons/im'
 import { MdKeyboardVoice } from 'react-icons/md'
+import { SearchContext } from '../../context/SearchContext';
+import useWindowSize from '../../helpers/useWindowSize';
 
 
 
 const NavigationBar = () => {
+
+  const {width} = useWindowSize();
+
+  const { showSpecialSearchBar, setShowSpecialSearchBar } = useContext(SearchContext);
+
   const specialSearchBarRender = (
     <div className='special_searchBar'>
-      <button>
+      <button onClick={() => setShowSpecialSearchBar(false)}>
         <BiArrowBack size={25} />
       </button>
       <form>
@@ -29,12 +36,14 @@ const NavigationBar = () => {
 
   return (
     <nav className='Navbar'>
-      {width <= 640 && 돋보기 버튼을 누른 상태 true ?
+      {width <= 640 && showSpecialSearchBar ?
         specialSearchBarRender
         :
-      <LeftNav />
-      <SearchBar />
-      <RightNav />
+        <>
+          <LeftNav />
+          <SearchBar />
+          <RightNav />
+        </>
     }
     </nav>
   )
