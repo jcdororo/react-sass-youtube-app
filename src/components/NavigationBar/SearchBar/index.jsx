@@ -3,9 +3,11 @@ import { ImSearch } from 'react-icons/im'
 import { MdKeyboardVoice } from 'react-icons/md'
 import useWindowSize from '../../../helpers/useWindowSize'
 
-const SearchBar = () => {
 
+const SearchBar = () => {
   const { width } = useWindowSize();
+
+
 
   return (
     <div className={`SearchBar ${width <= 640 ? 'smallSearch' : ''}`} >
