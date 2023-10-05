@@ -1,0 +1,15 @@
+@import './abstracts/variables';
+@import './abstracts/mixins';
+
+@import './layout/navBar/leftNav';
+@import './layout/navBar/navBar';
+@import './layout/navBar/rightNav';
+@import './layout/navBar/searchBar';
+
+@import './layout/siedeBar/bigSideBar';
+@import './layout/siedeBar/sideBar';
+@import './layout/siedeBar/smallSideBar';
+
+@import './pages/mainPage';
+@import './pages/searchedVideosPage';
+@import './pages/videoPage';
