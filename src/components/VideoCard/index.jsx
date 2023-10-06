@@ -2,8 +2,16 @@
 import React from 'react'
 import { BiDotsVerticalRounded } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import formatViews from '../../helpers/formatVies'
+import formatTimeVideo from '../../helpers/formatTimeVideo'
 
 const VideoCard = ({id, video, img, info, eInfo, channelInfo}) => {
+  dayjs.extend(relativeTime);
+  const time = dayjs(info.publishedAt).fromNow(true);
+  const views = formatViews(eInfo.viewCount);
+  const duration = formatTimeVideo(eInfo.duration);
   return (
     <div className='videoCard'>
       <Link to={`/video/${id}`} state={{ ...video }}>
@@ -12,7 +20,7 @@ const VideoCard = ({id, video, img, info, eInfo, channelInfo}) => {
           {
             eInfo.duration
               ? <div className='video_duration'>
-                <span>{eInfo.duration}</span>
+                <span>{duration}</span>
               </div>
               : null
           }
@@ -41,9 +49,9 @@ const VideoCard = ({id, video, img, info, eInfo, channelInfo}) => {
               </div>
             </Link>
             <div className='video_metadata'>
-              <span>{eInfo.viewCount} views</span> &nbsp;
+              <span>{views} views</span> &nbsp;
               <span className='dot_separator'> &#8226;</span>&nbsp;
-              <span>{info.publishedAt}</span>
+              <span>{time} ago</span>
             </div>
           </div>
         </div>
