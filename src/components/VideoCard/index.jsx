@@ -4,7 +4,7 @@ import { BiDotsVerticalRounded } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import formatViews from '../../helpers/formatVies'
+import formatViews from '../../helpers/formatViews'
 import formatTimeVideo from '../../helpers/formatTimeVideo'
 
 const VideoCard = ({id, video, img, info, eInfo, channelInfo}) => {
