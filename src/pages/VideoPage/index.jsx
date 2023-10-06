@@ -6,6 +6,9 @@ import { BiDislike, BiLike } from 'react-icons/bi';
 import { RiFlagLine, RiShareForwardLine } from 'react-icons/ri';
 import { MdPlaylistAdd } from 'react-icons/md';
 import dayjs from 'dayjs';
+import formatNumber from '../../helpers/formatNumber';
+import formatViews from '../../helpers/formatViews'
+import formatText from '../../helpers/formatText';
 
 const VideoPage = () => {
   const {videoId} = useParams();
@@ -13,6 +16,15 @@ const VideoPage = () => {
   const { state: currentVideo } = location;
 
   const { setIsToggled } = useContext(SidebarContext);
+
+  const view = formatNumber(currentVideo.extraInfo.viewCount);
+  const comments = formatNumber(currentVideo.extraInfo.commentCount);
+
+  const likes = formatViews(currentVideo.extraInfo.likeCount);
+  const dislikes = formatViews(currentVideo.extraInfo.dislikeCount);
+  const subscribers = formatViews(currentVideo.channelInfo.subscriberCount);
+
+  const videoDescription = formatText(currentVideo.snippet.description);
 
   useEffect(() => {
     setIsToggled(false);
@@ -43,7 +55,7 @@ const VideoPage = () => {
       <h1>{currentVideo.snippet.title}</h1>
       <div className='videoplayer_metadata'>
         <span>
-          {currentVideo.extraInfo.viewCount} views
+          {view} views
         </span>
         <span className='dot_separator'> &#8226; </span>
         <span>
@@ -71,13 +83,13 @@ const VideoPage = () => {
                 <div className='likes'>
                   <BiLike size={25} />
                   <span>
-                    likes
+                    {likes}
                   </span>
                 </div>
                 <div className='dislikes'>
                   <BiDislike size={25} />
                   <span>
-                    dislikes
+                    {dislikes}
                   </span>
                 </div>
               </div>
@@ -104,7 +116,7 @@ const VideoPage = () => {
                   {currentVideo.channelInfo.title}
                 </a>
                 <span>
-                  {currentVideo.channelInfo.subscriberCount} subscribers
+                  {subscribers} subscribers
                 </span>
               </div>
               <div className='channel_subscribe'>
@@ -114,12 +126,12 @@ const VideoPage = () => {
               </div>
             </div>
             <div className='video_description'>
-              {currentVideo.snippet.description}
+              {videoDescription}
             </div>
           </div>
           <div className='video_comments_container'>
             <div className='videp_comments_count'>
-              {currentVideo.extraInfo.commentCount} Comments
+              {comments} Comments
             </div>
             <div className='video_comments'>
               {/* videoComments Markup */}
