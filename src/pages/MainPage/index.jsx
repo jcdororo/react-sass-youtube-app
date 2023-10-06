@@ -30,7 +30,7 @@ const MainPage = () => {
   
 
   return (
-    <section>
+    <section className='mainGallery'>
       {mainVideos.map(video => (
         <VideoCard 
           key={video.id.videoId}

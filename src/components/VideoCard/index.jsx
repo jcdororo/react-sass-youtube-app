@@ -8,14 +8,13 @@ const VideoCard = ({id, video, img, info, eInfo, channelInfo}) => {
     <div className='videoCard'>
       <Link to={`/video/${id}`} state={{ ...video }}>
         <div className='video_preview'>
-          <img />
+          <img src={img} alt={info.title} />
           {
-            eInfo.duration ?
-                <div>
-                  <span>{eInfo.duration}</span>
-                </div>
-                :
-                null
+            eInfo.duration
+              ? <div className='video_duration'>
+                <span>{eInfo.duration}</span>
+              </div>
+              : null
           }
         </div>
         <div className='video_info_container'>
@@ -42,15 +41,15 @@ const VideoCard = ({id, video, img, info, eInfo, channelInfo}) => {
               </div>
             </Link>
             <div className='video_metadata'>
-              <span>{eInfo.videoCount} views</span> &nbsp;
+              <span>{eInfo.viewCount} views</span> &nbsp;
               <span className='dot_separator'> &#8226;</span>&nbsp;
               <span>{info.publishedAt}</span>
             </div>
           </div>
         </div>
-        </div>
         <div className='dots_container'>
           <BiDotsVerticalRounded size={25} className='dots' />
+        </div>
         </div>
       </Link>
 
