@@ -25,7 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
-          <Route path='/result/:input' element={<SearchedVideosPage />} />
+          <Route path='/results/:input' element={<SearchedVideosPage />} />
           <Route path='/video/:videoId' element={<VideoPage />} />
         </Route>
 
