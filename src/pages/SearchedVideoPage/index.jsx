@@ -35,7 +35,7 @@ const SearchedVideoPage = () => {
   
 
   return (
-    <section>
+    <section className='searchedVideos'>
       {searchedVideosMarkup}
     </section>
   )
