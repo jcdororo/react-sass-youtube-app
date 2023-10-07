@@ -2,7 +2,8 @@ import React, { useContext, useEffect } from 'react'
 import useWindowSize from '../../helpers/useWindowSize'
 import SmallSideBar from './SmallSideBar';
 import BigSideBar from './BigSideBar';
-import { SidebarContext } from '../../context/SidebarContext';
+import { SidebarContext } from '../../context/SidebarContext';import { BiZoomIn } from 'react-icons/bi';
+BiZoomIn
 
 const Sidebar = () => {
   const {width} = useWindowSize();
