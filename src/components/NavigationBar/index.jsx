@@ -8,21 +8,48 @@ import { MdKeyboardVoice } from 'react-icons/md'
 import { SearchContext } from '../../context/SearchContext';
 import useWindowSize from '../../helpers/useWindowSize';
 
+import axios from '../../api/axios'
+import { useNavigate } from 'react-router-dom'
+
 
 
 const NavigationBar = () => {
 
   const {width} = useWindowSize();
 
-  const { showSpecialSearchBar, setShowSpecialSearchBar } = useContext(SearchContext);
+  const { searchQuery, setSearchQuery, showSpecialSearchBar, setShowSpecialSearchBar } = useContext(SearchContext);
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setSearchQuery({
+      ...searchQuery,
+      input: e.target.value
+    })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if(searchQuery.input !== '') {
+      const response = await axios.get(
+        `/search?part=snippet&maxResults=10&q=${searchQuery.input}`
+      );
+      
+      setSearchQuery({
+        ...searchQuery,
+        videos: response.data.items
+      });
+      navigate(`/results/${searchQuery.input}`)
+    }
+  }
 
   const specialSearchBarRender = (
     <div className='special_searchBar'>
       <button onClick={() => setShowSpecialSearchBar(false)}>
         <BiArrowBack size={25} />
       </button>
-      <form>
-        <input type='text' name='search' placeholder='Search' />
+      <form onSubmit={handleSubmit}>
+        <input value={setSearchQuery.input} type='text' name='search' placeholder='Search' />
         <button type='submit'>
           <ImSearch size={20} />
         </button>
@@ -41,7 +68,7 @@ const NavigationBar = () => {
         :
         <>
           <LeftNav />
-          <SearchBar />
+          <SearchBar onChange={handleChange} onSubmit={handleSubmit} />
           <RightNav />
         </>
     }
